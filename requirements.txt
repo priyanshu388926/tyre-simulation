@@ -15,3 +15,4 @@ plotly>=5.20.0
 
 # ─── PDF report ───────────────────────────────────────────────────────────────
 reportlab>=4.1.0
+matplotlib>=3.8.0         # used by report_generator.py for curve plots in PDF
