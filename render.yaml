@@ -5,7 +5,7 @@ services:
     region: oregon
     plan: free
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
-    startCommand: streamlit run dashboard_app.py --server.port=$PORT
+    startCommand: streamlit run dashboard_app.py --server.port=$PORT --server.address=0.0.0.0
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9

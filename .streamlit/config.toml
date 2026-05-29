@@ -1,11 +1,14 @@
 [server]
 headless = true
+address = "0.0.0.0"
 enableCORS = false
 enableXsrfProtection = false
 enableStaticServing = true
+maxMessageSize = 200
 
 [browser]
 gatherUsageStats = false
+serverAddress = "0.0.0.0"
 
 [theme]
 base = "light"
