@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: tyre-traction-sim
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: streamlit run dashboard_app.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: STREAMLIT_SERVER_ENABLE_CORS
+        value: "false"
+      - key: STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION
+        value: "false"
+
+# ─── IMPORTANT ────────────────────────────────────────────────────────────────
+# Model artifacts (artifacts/*.joblib) must be committed to your git repo
+# BEFORE deploying to Render. Run locally first:
+#
+#   python train_models.py
+#   git add artifacts/
+#   git commit -m "Add trained model artifacts"
+#   git push
+#
+# The dashboard loads models from disk — no training happens on Render.
+# ──────────────────────────────────────────────────────────────────────────────
