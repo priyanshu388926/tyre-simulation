@@ -6,6 +6,7 @@ then synthesises a **Pacejka Magic-Formula** µ–slip curve and serves it
 through a Streamlit engineering dashboard.
 
 ## Project structure
+
 ```
 tyre_sim/
 ├── dashboard_app.py          # Streamlit UI
@@ -20,20 +21,24 @@ tyre_sim/
 ```
 
 ## Install
+
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
 ## Run
+
 ```bash
 streamlit run dashboard_app.py
 ```
+
 On first launch the app trains XGBoost models (CV + RandomizedSearch) and
 caches them under `artifacts/`. Click **Retrain models** in the sidebar
 to refresh.
 
 ## How it works
+
 1. **Data pipeline** (`data_processing.py`)
    - Fuzzy-matches messy column headers to a canonical schema.
    - KNN-imputes missing numeric values (preserves correlations between
@@ -61,3 +66,32 @@ to refresh.
      top-20 feature importance, raw dataset preview.
    - Right panel: predictions, Pacejka coefficients, model hold-out
      metrics, auto-generated engineering insight, PDF export.
+
+## Docker Support
+
+You can also run the entire Tyre Traction Simulator inside a Docker container.
+
+### Build and Run with Docker Compose
+
+To build the image and start the application, run:
+
+```bash
+docker compose up --build
+```
+
+The application will be accessible at [http://localhost:8501](http://localhost:8501).
+
+### Build and Run with Docker CLI
+
+Alternatively, you can build and run using standard Docker commands:
+
+1. **Build the image:**
+
+   ```bash
+   docker build -t tyre-simulation .
+   ```
+
+2. **Run the container:**
+   ```bash
+   docker run -p 8501:8501 tyre-simulation
+   ```
